@@ -2,8 +2,7 @@
 
 import { useState, useRef } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Github, ExternalLink, Sparkles } from 'lucide-react'
-
+import { Github, ExternalLink, Star } from 'lucide-react'
 import Image from 'next/image'
 import { useInView } from '../hooks/useInView'
 import { projects } from '../lib/data'
@@ -12,161 +11,185 @@ interface ProjectsProps {
   darkMode: boolean
 }
 
+const categories = ['All', 'Full-Stack', 'Frontend']
+
 export default function Projects({ darkMode }: ProjectsProps) {
-  const [selectedTech, setSelectedTech] = useState('all')
+  const [activeCategory, setActiveCategory] = useState('All')
   const ref = useRef<HTMLElement>(null)
-  const isInView = useInView(ref, 0.1)
+  const isInView = useInView(ref, 0.05)
 
-  const filteredProjects =
-    selectedTech === 'all'
+  const filtered =
+    activeCategory === 'All'
       ? projects
-      : projects.filter(p => p.tech.includes(selectedTech))
-
-  const techFilters = ['all', 'HTML5', 'CSS3', 'Bootstrap', 'Tailwind CSS', 'JavaScript', 'React', 'Firebase']
+      : projects.filter((p) => p.category === activeCategory)
 
   return (
     <section
       id="projects"
       ref={ref}
-      className={`py-20 px-4 sm:px-6 lg:px-8 ${darkMode ? 'bg-gray-800/50' : 'bg-white'}`}
+      className={`py-24 px-4 sm:px-6 lg:px-8 ${darkMode ? 'bg-gray-900/60' : 'bg-gray-50'}`}
     >
       <div className="max-w-7xl mx-auto">
-        <motion.h2
-          initial={{ y: 30, opacity: 0 }}
-          animate={isInView ? { y: 0, opacity: 1 } : {}}
-          transition={{ duration: 0.6 }}
-          className="text-4xl font-bold mb-12 text-center"
-        >
-          Featured Projects
-        </motion.h2>
-
         <motion.div
           initial={{ y: 30, opacity: 0 }}
           animate={isInView ? { y: 0, opacity: 1 } : {}}
-          transition={{ duration: 0.6, delay: 0.1 }}
-          className="flex flex-wrap justify-center gap-3 mb-12"
+          transition={{ duration: 0.6 }}
+          className="text-center mb-12"
         >
-          {techFilters.map(tech => (
-            <motion.button
-              key={tech}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              onClick={() => setSelectedTech(tech)}
-              className={`px-4 py-2 rounded-lg transition-all duration-300 ${
-                selectedTech === tech
-                  ? darkMode
-                    ? 'bg-blue-500 text-white shadow-lg shadow-blue-500/50'
-                    : 'bg-blue-600 text-white shadow-lg'
+          <span className="inline-block px-4 py-1.5 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 text-sm font-semibold mb-4">
+            My Work
+          </span>
+          <h2 className="text-4xl font-extrabold">Projects That Ship</h2>
+          <p className={`mt-3 text-lg max-w-xl mx-auto ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>
+            From landing pages to full-stack platforms — real products, real users, real impact.
+          </p>
+        </motion.div>
+
+        {/* Category filter */}
+        <motion.div
+          initial={{ y: 20, opacity: 0 }}
+          animate={isInView ? { y: 0, opacity: 1 } : {}}
+          transition={{ duration: 0.5, delay: 0.1 }}
+          className="flex justify-center gap-3 mb-12"
+        >
+          {categories.map((cat) => (
+            <button
+              key={cat}
+              onClick={() => setActiveCategory(cat)}
+              className={`px-5 py-2 rounded-xl text-sm font-semibold transition-all duration-300 ${
+                activeCategory === cat
+                  ? 'bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow-lg shadow-blue-500/20'
                   : darkMode
-                  ? 'bg-gray-700 hover:bg-gray-600'
-                  : 'bg-gray-200 hover:bg-gray-300'
+                  ? 'bg-white/5 border border-white/10 text-gray-400 hover:text-white hover:bg-white/10'
+                  : 'bg-white border border-gray-200 text-gray-600 hover:border-blue-400 hover:text-blue-600'
               }`}
             >
-              {tech.charAt(0).toUpperCase() + tech.slice(1)}
-            </motion.button>
+              {cat}
+            </button>
           ))}
         </motion.div>
 
         <AnimatePresence mode="wait">
           <motion.div
-            key={selectedTech}
+            key={activeCategory}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.4 }}
-            className="grid md:grid-cols-2 lg:grid-cols-3 gap-8"
+            transition={{ duration: 0.35 }}
+            className="grid md:grid-cols-2 lg:grid-cols-3 gap-7"
           >
-            {filteredProjects.map((project, index) => (
+            {filtered.map((project, index) => (
               <motion.div
                 key={project.id}
                 initial={{ opacity: 0, y: 30 }}
-                animate={isInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.5, delay: (index % 3) * 0.1 + 0.2 }}
-                whileHover={{ scale: 1.05, y: -10 }}
-                className={`group rounded-lg overflow-hidden ${
-                  darkMode ? 'bg-gray-800' : 'bg-white'
-                } border ${
-                  darkMode ? 'border-gray-700' : 'border-gray-200'
-                } transition-all duration-500 hover:shadow-2xl`}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.4, delay: index * 0.07 }}
+                whileHover={{ y: -6 }}
+                className={`group flex flex-col rounded-2xl overflow-hidden border transition-all duration-300 hover:shadow-2xl ${
+                  darkMode
+                    ? 'bg-gray-800/60 border-white/5 hover:border-blue-500/30 hover:shadow-blue-500/10'
+                    : 'bg-white border-gray-100 hover:border-blue-200 hover:shadow-gray-200'
+                }`}
               >
-                <div className="relative h-48 overflow-hidden">
+                {/* Image */}
+                <div className="relative h-48 overflow-hidden bg-gray-800">
                   <motion.div
-                    whileHover={{ scale: 1.1 }}
+                    whileHover={{ scale: 1.05 }}
                     transition={{ duration: 0.5 }}
                     className="w-full h-full"
                   >
                     <Image
                       src={project.image}
                       alt={project.title}
-                      width={800}
-                      height={600}
-                      className="w-full h-full object-cover"
+                      fill
+                      className="object-cover"
                     />
                   </motion.div>
-                  <motion.div
-                    initial={{ opacity: 0 }}
-                    whileHover={{ opacity: 1 }}
-                    transition={{ duration: 0.3 }}
-                    className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"
-                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+
                   {project.featured && (
-                    <motion.div
-                      initial={{ scale: 0 }}
-                      animate={{ scale: 1 }}
-                      transition={{ delay: 0.3, type: 'spring' }}
-                      className="absolute top-2 right-2 bg-blue-500 text-white px-3 py-1 rounded-full text-sm font-semibold flex items-center gap-1"
-                    >
-                      <motion.div
-                        animate={{ rotate: [0, 360] }}
-                        transition={{ duration: 2, repeat: Infinity, ease: 'linear' }}
-                      >
-                        <Sparkles className="h-3 w-3" />
-                      </motion.div>
-                      Featured
-                    </motion.div>
+                    <div className="absolute top-3 left-3 flex items-center gap-1 bg-gradient-to-r from-blue-600 to-purple-600 text-white px-2.5 py-1 rounded-lg text-xs font-bold">
+                      <Star className="h-3 w-3 fill-current" /> Flagship
+                    </div>
                   )}
+
+                  <span
+                    className={`absolute top-3 right-3 px-2.5 py-1 rounded-lg text-xs font-semibold ${
+                      project.category === 'Full-Stack'
+                        ? 'bg-green-500/20 text-green-400 border border-green-500/30'
+                        : 'bg-blue-500/20 text-blue-400 border border-blue-500/30'
+                    }`}
+                  >
+                    {project.category}
+                  </span>
                 </div>
-                <div className="p-6">
-                  <h3 className="text-xl font-semibold mb-2 group-hover:text-blue-400 transition-colors">
+
+                {/* Content */}
+                <div className="flex flex-col flex-1 p-5">
+                  <h3
+                    className={`text-lg font-bold mb-2 group-hover:text-blue-400 transition-colors ${
+                      darkMode ? 'text-white' : 'text-gray-900'
+                    }`}
+                  >
                     {project.title}
                   </h3>
-                  <p className={`mb-4 ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>
-                    {project.description}
+                  <p
+                    className={`text-sm leading-relaxed mb-4 flex-1 ${
+                      darkMode ? 'text-gray-400' : 'text-gray-600'
+                    }`}
+                  >
+                    {project.description.length > 180
+                      ? project.description.slice(0, 180) + '...'
+                      : project.description}
                   </p>
-                  {/* <div className="flex flex-wrap gap-2 mb-4">
-                   {techFilters.map((tech: string) => (
-                      <motion.span
-                        key={tech}
-                        whileHover={{ scale: 1.1 }}
-                        className={`px-3 py-1 rounded-full text-sm ${
-                          darkMode ? 'bg-gray-700 text-gray-300' : 'bg-gray-100 text-gray-700'
-                        } transition-transform`}
+
+                  {/* Tech stack */}
+                  <div className="flex flex-wrap gap-1.5 mb-4">
+                    {project.tech.slice(0, 4).map((t) => (
+                      <span
+                        key={t}
+                        className={`px-2 py-0.5 rounded-md text-xs font-medium ${
+                          darkMode
+                            ? 'bg-white/5 text-gray-400 border border-white/10'
+                            : 'bg-gray-100 text-gray-600 border border-gray-200'
+                        }`}
                       >
-                        {tech}
-                      </motion.span>
+                        {t}
+                      </span>
                     ))}
-                  </div> */}
-                  <div className="flex space-x-4">
-                    <motion.a
-                      href={project.github}
-                      whileHover={{ scale: 1.1 }}
-                      whileTap={{ scale: 0.9 }}
-                      className={`flex items-center ${
-                        darkMode ? 'text-blue-400 hover:text-blue-300' : 'text-blue-600 hover:text-blue-700'
-                      } transition-all`}
-                    >
-                      <Github className="h-5 w-5 mr-1" /> Code
-                    </motion.a>
-                    <motion.a
-                      href={project.live}
-                      whileHover={{ scale: 1.1 }}
-                      whileTap={{ scale: 0.9 }}
-                      className={`flex items-center ${
-                        darkMode ? 'text-blue-400 hover:text-blue-300' : 'text-blue-600 hover:text-blue-700'
-                      } transition-all`}
-                    >
-                      <ExternalLink className="h-5 w-5 mr-1" /> Live Demo
-                    </motion.a>
+                    {project.tech.length > 4 && (
+                      <span className="px-2 py-0.5 rounded-md text-xs font-medium text-blue-400 bg-blue-500/10 border border-blue-500/20">
+                        +{project.tech.length - 4} more
+                      </span>
+                    )}
+                  </div>
+
+                  {/* Links */}
+                  <div className="flex gap-3 pt-3 border-t border-white/5">
+                    {project.github !== '#' && (
+                      <a
+                        href={project.github}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className={`flex items-center gap-1.5 text-sm font-medium transition-colors ${
+                          darkMode
+                            ? 'text-gray-400 hover:text-white'
+                            : 'text-gray-500 hover:text-gray-900'
+                        }`}
+                      >
+                        <Github className="h-4 w-4" /> Code
+                      </a>
+                    )}
+                    {project.live !== '#' && (
+                      <a
+                        href={project.live}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center gap-1.5 text-sm font-medium text-blue-400 hover:text-blue-300 transition-colors"
+                      >
+                        <ExternalLink className="h-4 w-4" /> Live Demo
+                      </a>
+                    )}
                   </div>
                 </div>
               </motion.div>

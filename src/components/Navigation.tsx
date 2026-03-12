@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import { motion } from 'framer-motion'
-import { Code2, Moon, Sun, Menu, X } from 'lucide-react'
+import { Moon, Sun, Menu, X } from 'lucide-react'
 import { useScrollSpy } from '../hooks/useScrollSpy'
 import { navItems } from '../lib/data'
 import { scrollToSection } from '../lib/utils'
@@ -22,26 +22,26 @@ export default function Navigation({ darkMode, setDarkMode }: NavigationProps) {
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.4 }}
       className={`fixed w-full z-50 transition-all duration-300 ${
-        darkMode ? 'bg-gray-900/95' : 'bg-white/95'
-      } backdrop-blur-sm border-b ${darkMode ? 'border-gray-800' : 'border-gray-200'}`}
+        darkMode ? 'bg-gray-950/95' : 'bg-white/95'
+      } backdrop-blur-md border-b ${darkMode ? 'border-white/5' : 'border-gray-200'}`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
-          {/* Logo */}
+
+          {/* Logo / Name */}
           <motion.div
             initial={{ x: -50, opacity: 0 }}
             animate={{ x: 0, opacity: 1 }}
             transition={{ duration: 0.6 }}
-            className="flex items-center cursor-pointer"
+            className="flex items-center gap-2 cursor-pointer"
             onClick={() => scrollToSection('home')}
           >
-            <motion.div
-              whileHover={{ rotate: 180 }}
-              transition={{ duration: 0.5 }}
-            >
-              <Code2 className={`h-8 w-8 ${darkMode ? 'text-blue-400' : 'text-blue-600'}`} />
-            </motion.div>
-            <span className="ml-2 text-xl font-bold">DevPortfolio</span>
+            <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center text-white font-bold text-sm">
+              GA
+            </div>
+            <span className={`font-bold text-lg ${darkMode ? 'text-white' : 'text-gray-900'}`}>
+              Gloria<span className="text-blue-500">.</span>
+            </span>
           </motion.div>
 
           {/* Desktop Navigation */}
@@ -55,57 +55,55 @@ export default function Navigation({ darkMode, setDarkMode }: NavigationProps) {
                 onClick={() => scrollToSection(item.href)}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className={`transition-all duration-300 ${
+                className={`text-sm font-medium transition-all duration-300 ${
                   activeSection === item.href
-                    ? darkMode
-                      ? 'text-blue-400 scale-110'
-                      : 'text-blue-600 scale-110'
+                    ? 'text-blue-500'
                     : darkMode
-                    ? 'text-gray-300 hover:text-white'
+                    ? 'text-gray-400 hover:text-white'
                     : 'text-gray-600 hover:text-gray-900'
                 }`}
               >
                 {item.name}
+                {activeSection === item.href && (
+                  <motion.div layoutId="activeNav" className="h-0.5 bg-blue-500 mt-0.5 rounded-full" />
+                )}
               </motion.button>
             ))}
-            
-            {/* Dark Mode Toggle Button */}
+
             <motion.button
-              whileHover={{ scale: 1.1, rotate: 12 }}
+              whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
               onClick={() => setDarkMode(!darkMode)}
               className={`p-2 rounded-lg transition-all duration-300 ${
-                darkMode ? 'bg-gray-800 text-yellow-400' : 'bg-gray-200 text-gray-700'
+                darkMode ? 'bg-white/5 text-yellow-400 hover:bg-white/10' : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
               }`}
               aria-label="Toggle dark mode"
             >
-              {darkMode ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
+              {darkMode ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
             </motion.button>
           </div>
 
-          {/* Mobile menu button */}
+          {/* Mobile buttons */}
           <div className="md:hidden flex items-center space-x-2">
             <motion.button
-              whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
               onClick={() => setDarkMode(!darkMode)}
               className={`p-2 rounded-lg transition-all duration-300 ${
-                darkMode ? 'bg-gray-800 text-yellow-400' : 'bg-gray-200 text-gray-700'
+                darkMode ? 'bg-white/5 text-yellow-400' : 'bg-gray-100 text-gray-700'
               }`}
               aria-label="Toggle dark mode"
             >
-              {darkMode ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
+              {darkMode ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
             </motion.button>
             <motion.button
-              whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               className={`p-2 rounded-lg transition-all duration-300 ${
-                darkMode ? 'bg-gray-800' : 'bg-gray-200'
+                darkMode ? 'bg-white/5' : 'bg-gray-100'
               }`}
               aria-label="Toggle menu"
             >
-              {mobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+              {mobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
             </motion.button>
           </div>
         </div>
@@ -118,27 +116,22 @@ export default function Navigation({ darkMode, setDarkMode }: NavigationProps) {
           animate={{ height: 'auto', opacity: 1 }}
           exit={{ height: 0, opacity: 0 }}
           transition={{ duration: 0.3 }}
-          className={`md:hidden ${darkMode ? 'bg-gray-800' : 'bg-white'} border-t ${
-            darkMode ? 'border-gray-700' : 'border-gray-200'
+          className={`md:hidden ${darkMode ? 'bg-gray-950' : 'bg-white'} border-t ${
+            darkMode ? 'border-white/5' : 'border-gray-200'
           }`}
         >
-          <div className="px-2 pt-2 pb-3 space-y-1">
+          <div className="px-4 py-3 space-y-1">
             {navItems.map(item => (
               <motion.button
                 key={item.name}
-                whileHover={{ x: 10 }}
-                onClick={() => {
-                  scrollToSection(item.href)
-                  setMobileMenuOpen(false)
-                }}
-                className={`block w-full text-left px-3 py-2 rounded-md transition-all duration-300 ${
+                whileHover={{ x: 6 }}
+                onClick={() => { scrollToSection(item.href); setMobileMenuOpen(false) }}
+                className={`block w-full text-left px-3 py-2.5 rounded-lg text-sm font-medium transition-all duration-300 ${
                   activeSection === item.href
-                    ? darkMode
-                      ? 'bg-gray-700 text-blue-400'
-                      : 'bg-gray-100 text-blue-600'
+                    ? 'bg-blue-500/10 text-blue-500'
                     : darkMode
-                    ? 'text-gray-300 hover:bg-gray-700'
-                    : 'text-gray-600 hover:bg-gray-100'
+                    ? 'text-gray-300 hover:bg-white/5'
+                    : 'text-gray-600 hover:bg-gray-50'
                 }`}
               >
                 {item.name}

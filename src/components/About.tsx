@@ -2,8 +2,7 @@
 
 import { useRef } from 'react'
 import { motion } from 'framer-motion'
-import { Github, Linkedin, Mail, Layers, Server, Database, Code2 } from 'lucide-react'
-
+import { Github, Linkedin, Mail, Heart, Rocket, Code2, Globe } from 'lucide-react'
 import Image from 'next/image'
 import { useInView } from '../hooks/useInView'
 
@@ -11,165 +10,167 @@ interface AboutProps {
   darkMode: boolean
 }
 
+const timeline = [
+  {
+    year: '2023',
+    title: 'Where It All Began',
+    desc: 'Wrote my first lines of HTML and CSS. Fell in love with seeing designs come to life in the browser.',
+    icon: Code2,
+    color: 'from-blue-500 to-cyan-500',
+  },
+  {
+    year: '2023',
+    title: 'JavaScript & React',
+    desc: 'Discovered JavaScript\'s power, then React\'s magic. Built my first interactive UIs and fell deeper in.',
+    icon: Heart,
+    color: 'from-pink-500 to-rose-500',
+  },
+  {
+    year: '2024',
+    title: 'Going Full-Stack',
+    desc: 'Dove into Node.js, Express, MongoDB. Suddenly I could build anything — front to back, end to end.',
+    icon: Rocket,
+    color: 'from-purple-500 to-indigo-500',
+  },
+  {
+    year: '2025',
+    title: 'Production-Ready',
+    desc: 'Launched real products: a live food ordering platform with payments, and a social platform for parents.',
+    icon: Globe,
+    color: 'from-green-500 to-emerald-500',
+  },
+]
+
 export default function About({ darkMode }: AboutProps) {
   const ref = useRef<HTMLElement>(null)
   const isInView = useInView(ref, 0.1)
 
-  const containerVariants = {
+  const container = {
     hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.2,
-      },
-    },
+    visible: { opacity: 1, transition: { staggerChildren: 0.15 } },
   }
-
-  const itemVariants = {
+  const item = {
     hidden: { y: 30, opacity: 0 },
-    visible: {
-      y: 0,
-      opacity: 1,
-      transition: { duration: 0.6 },
-    },
+    visible: { y: 0, opacity: 1, transition: { duration: 0.6 } },
   }
-
-  const skills = [
-    {
-      icon: Layers,
-      title: 'Front-End',
-      description: 'Modern UI/UX',
-      color: darkMode ? 'text-blue-400' : 'text-blue-600',
-    },
-    {
-      icon: Server,
-      title: 'Back-End',
-      description: 'Scalable APIs',
-      color: darkMode ? 'text-green-400' : 'text-green-600',
-    },
-    {
-      icon: Database,
-      title: 'Database',
-      description: 'Data Management',
-      color: darkMode ? 'text-purple-400' : 'text-purple-600',
-    },
-    {
-      icon: Code2,
-      title: 'Languages',
-      description: 'JS, TS, GraphQL',
-      color: darkMode ? 'text-orange-400' : 'text-orange-600',
-    },
-  ]
 
   return (
     <section
       id="about"
       ref={ref}
-      className={`py-20 px-4 sm:px-6 lg:px-8 ${
-        darkMode ? 'bg-gray-800/50' : 'bg-white'
-      } relative overflow-hidden`}
+      className={`py-24 px-4 sm:px-6 lg:px-8 relative overflow-hidden ${
+        darkMode ? 'bg-gray-900/60' : 'bg-gray-50'
+      }`}
     >
       <div className="max-w-7xl mx-auto">
-        <motion.h2
+        <motion.div
           initial={{ y: 30, opacity: 0 }}
           animate={isInView ? { y: 0, opacity: 1 } : {}}
           transition={{ duration: 0.6 }}
-          className="text-4xl font-bold mb-12 text-center"
+          className="text-center mb-16"
         >
-          About Me
-        </motion.h2>
+          <span className="inline-block px-4 py-1.5 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 text-sm font-semibold mb-4">
+            About Me
+          </span>
+          <h2 className="text-4xl font-extrabold">The Story Behind the Code</h2>
+        </motion.div>
 
         <motion.div
-          variants={containerVariants}
+          variants={container}
           initial="hidden"
           animate={isInView ? 'visible' : 'hidden'}
-          className="grid md:grid-cols-2 gap-12 items-center"
+          className="grid lg:grid-cols-2 gap-16 items-start"
         >
-          
-          <motion.div variants={itemVariants}>
+          {/* Left — Photo + socials */}
+          <motion.div variants={item} className="flex flex-col items-center lg:items-start gap-6">
             <div className="relative group">
-              <motion.div
-                whileHover={{ opacity: 1 }}
-                className={`absolute inset-0 ${
-                  darkMode
-                    ? 'bg-gradient-to-r from-blue-500 to-purple-600'
-                    : 'bg-gradient-to-r from-blue-400 to-purple-500'
-                } rounded-2xl blur-xl opacity-75 transition-opacity duration-300`}
-              />
-              
-              <motion.div
-                whileHover={{ scale: 1.05 }}
-                transition={{ duration: 0.3 }}
-                className="relative rounded-2xl overflow-hidden border-4 border-gray-700"
-              >
+              <div className="absolute inset-0 bg-gradient-to-br from-blue-500 to-purple-600 rounded-3xl blur-xl opacity-40 group-hover:opacity-60 transition-opacity duration-300" />
+              <div className="relative rounded-3xl overflow-hidden border-2 border-white/10 w-full max-w-sm">
                 <Image
-                  src="https://images.unsplash.com/photo-1737408011230-995d7a7aca1b?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                  alt="Profile"
-                  width={600}
+                  src="/images/gloria.png"
+                  alt="Gloria Aguedu"
+                  width={500}
                   height={600}
-                  className="w-full h-auto"
+                  className="w-full h-auto object-cover object-top"
                   priority
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
-              </motion.div>
+                <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
+                <div className="absolute bottom-4 left-4 right-4">
+                  <div className="bg-black/60 backdrop-blur-md rounded-xl p-3 border border-white/10">
+                    <p className="text-white font-semibold text-sm">Gloria Aguedu</p>
+                    <p className="text-blue-400 text-xs">Full-Stack Developer · Lagos, Nigeria</p>
+                  </div>
+                </div>
+              </div>
             </div>
- 
-            <motion.div
-              variants={itemVariants}
-              className="flex justify-center space-x-4 mt-8"
-            >
+
+            {/* Social links */}
+            <div className="flex gap-3">
               {[
-                { icon: Github, href: 'https://github.com/boluwatifemi23', label: 'GitHub' },
-                { icon: Linkedin, href: 'https://www.linkedin.com/in/coding-professional-276516264', label: 'LinkedIn' },
-                { icon: Mail, href: 'codecraftpro83@gmail.com', label: 'Email' },
-              ].map((social, index) => (
+                { icon: Github, href: 'https://github.com/boluwatifemi23', label: 'GitHub', color: 'hover:bg-gray-700' },
+                { icon: Linkedin, href: 'https://www.linkedin.com/in/coding-professional-276516264', label: 'LinkedIn', color: 'hover:bg-blue-600' },
+                { icon: Mail, href: 'mailto:codecraftpro83@gmail.com', label: 'Email', color: 'hover:bg-red-500' },
+              ].map((social) => (
                 <motion.a
-                  key={index}
+                  key={social.label}
                   href={social.href}
                   aria-label={social.label}
-                  whileHover={{ scale: 1.1, y: -5 }}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  whileHover={{ scale: 1.1, y: -4 }}
                   whileTap={{ scale: 0.9 }}
-                  className={`p-3 rounded-lg ${
-                    darkMode ? 'bg-gray-700 hover:bg-gray-600' : 'bg-gray-200 hover:bg-gray-300'
-                  } transition-all duration-300`}
+                  className={`p-3 rounded-xl border transition-all duration-300 flex items-center gap-2 text-sm font-medium ${
+                    darkMode
+                      ? `bg-white/5 border-white/10 text-gray-300 ${social.color} hover:text-white hover:border-transparent`
+                      : `bg-white border-gray-200 text-gray-700 ${social.color} hover:text-white hover:border-transparent`
+                  }`}
                 >
-                  <social.icon className="h-6 w-6" />
+                  <social.icon className="h-4 w-4" />
+                  {social.label}
                 </motion.a>
               ))}
-            </motion.div>
+            </div>
           </motion.div>
 
-          <motion.div variants={itemVariants}>
-            <p className={`text-lg mb-6 ${darkMode ? 'text-gray-300' : 'text-gray-600'}`}>
-              I am a passionate full-stack software developer specializing in building exceptional
-              digital experiences. With expertise across the entire web development stack, I create
-              scalable, performant applications that solve real-world problems.
+          {/* Right — Story + Timeline */}
+          <motion.div variants={item}>
+            <p className={`text-lg leading-relaxed mb-4 ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
+              I&apos;m <strong className="text-white">Gloria Aguedu</strong>, a Full-Stack Developer based in Lagos, Nigeria, with 2 years of hands-on experience turning ideas into production-ready digital products.
             </p>
-            <p className={`text-lg mb-6 ${darkMode ? 'text-gray-300' : 'text-gray-600'}`}>
-              My journey in tech has equipped me with a diverse skill set ranging from responsive
-              front-end interfaces to robust back-end systems and database management.  I am
-              constantly learning and adapting to new technologies to deliver the best solutions.
+            <p className={`text-lg leading-relaxed mb-4 ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>
+              My journey started with the basics — HTML, CSS, the fundamentals — and grew into something much bigger. I discovered JavaScript, then React, then the world of backend development with Node.js and MongoDB. Each step unlocked a new level of what I could build.
+            </p>
+            <p className={`text-lg leading-relaxed mb-10 ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>
+              Today I build <strong className={darkMode ? 'text-white' : 'text-gray-900'}>complete, real-world applications</strong> — from e-commerce platforms with live payment processing to social networks with community features. Whether you need a business website, a customer-facing product, or a complex web app, I&apos;ve got you covered.
             </p>
 
-          
-            <motion.div variants={containerVariants} className="grid grid-cols-2 gap-4 mt-8">
-              {skills.map((skill, index) => (
+            {/* Timeline */}
+            <div className="space-y-5">
+              {timeline.map((entry, i) => (
                 <motion.div
-                  key={index}
-                  variants={itemVariants}
-                  whileHover={{ scale: 1.05, y: -5 }}
-                  className={`p-4 rounded-lg ${
-                    darkMode ? 'bg-gray-700/50' : 'bg-gray-100'
-                  } transition-all duration-300 hover:shadow-lg`}
+                  key={i}
+                  initial={{ x: 30, opacity: 0 }}
+                  animate={isInView ? { x: 0, opacity: 1 } : {}}
+                  transition={{ duration: 0.5, delay: 0.3 + i * 0.1 }}
+                  className={`flex gap-4 p-4 rounded-2xl border transition-all duration-300 ${
+                    darkMode
+                      ? 'bg-white/3 border-white/5 hover:bg-white/5'
+                      : 'bg-white border-gray-100 hover:border-gray-200 shadow-sm'
+                  }`}
                 >
-                  <skill.icon className={`h-10 w-10 mb-3 ${skill.color}`} />
-                  <h3 className="text-lg font-semibold mb-1">{skill.title}</h3>
-                  <p className={`text-sm ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>
-                    {skill.description}
-                  </p>
+                  <div className={`w-10 h-10 rounded-xl bg-gradient-to-br ${entry.color} flex items-center justify-center shrink-0`}>
+                    <entry.icon className="h-5 w-5 text-white" />
+                  </div>
+                  <div>
+                    <div className="flex items-center gap-2 mb-1">
+                      <span className="text-xs text-blue-400 font-semibold">{entry.year}</span>
+                      <span className={`font-bold text-sm ${darkMode ? 'text-white' : 'text-gray-900'}`}>{entry.title}</span>
+                    </div>
+                    <p className={`text-sm ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>{entry.desc}</p>
+                  </div>
                 </motion.div>
               ))}
-            </motion.div>
+            </div>
           </motion.div>
         </motion.div>
       </div>
