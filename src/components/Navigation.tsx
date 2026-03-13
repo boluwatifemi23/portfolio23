@@ -46,25 +46,25 @@ export default function Navigation({ darkMode, setDarkMode }: NavigationProps) {
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         scrolled
           ? darkMode
-            ? 'bg-gray-950/90 backdrop-blur-xl border-b border-white/5 shadow-xl shadow-black/20'
+            ? 'bg-gray-950/90 backdrop-blur-xl border-b border-white/5 shadow-xl'
             : 'bg-white/90 backdrop-blur-xl border-b border-gray-100 shadow-md'
           : 'bg-transparent'
       }`}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16">
+      <div className="w-full px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto flex items-center justify-between h-16">
 
-         
+          {/* Logo */}
           <button onClick={() => scrollToSection('home')} className="flex items-center gap-2 shrink-0">
-            <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center text-white font-bold text-xs">
+            <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center text-white font-bold text-xs shrink-0">
               GA
             </div>
-            <span className={`font-bold text-lg ${darkMode ? 'text-white' : 'text-gray-900'}`}>
+            <span className={`font-bold text-base sm:text-lg ${darkMode ? 'text-white' : 'text-gray-900'}`}>
               Gloria<span className="text-blue-500">.</span>
             </span>
           </button>
 
-          
+          {/* Nav links — hidden on mobile */}
           <div className="hidden md:flex items-center gap-0.5">
             {navLinks.map((link) => (
               <button
@@ -90,7 +90,7 @@ export default function Navigation({ darkMode, setDarkMode }: NavigationProps) {
             ))}
           </div>
 
-          
+          {/* Dark mode toggle */}
           <motion.button
             onClick={() => setDarkMode(!darkMode)}
             whileHover={{ scale: 1.1 }}
