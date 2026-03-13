@@ -22,39 +22,39 @@ export default function Skills({ darkMode }: SkillsProps) {
   ]
 
   return (
-    <section id="skills" ref={ref} className={`py-24 px-4 sm:px-6 lg:px-8 ${darkMode ? '' : 'bg-gray-50'}`}>
+    <section id="skills" ref={ref} className={`py-16 sm:py-24 px-4 sm:px-6 lg:px-8 ${darkMode ? '' : 'bg-gray-50'}`}>
       <div className="max-w-7xl mx-auto">
         <motion.div
           initial={{ y: 30, opacity: 0 }}
           animate={isInView ? { y: 0, opacity: 1 } : {}}
           transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          className="text-center mb-10 sm:mb-16"
         >
           <span className="inline-block px-4 py-1.5 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 text-sm font-semibold mb-4">
             Technical Skills
           </span>
-          <h2 className="text-4xl font-extrabold">What I Work With</h2>
-          <p className={`mt-3 text-lg max-w-xl mx-auto ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>
+          <h2 className="text-3xl sm:text-4xl font-extrabold">What I Work With</h2>
+          <p className={`mt-3 text-base sm:text-lg max-w-xl mx-auto ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>
             Every tool here has been used in a real project — no filler, no fluff.
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 gap-8">
+        <div className="grid sm:grid-cols-2 gap-5 sm:gap-8">
           {sections.map((section, sectionIdx) => (
             <motion.div
               key={section.title}
               initial={{ y: 30, opacity: 0 }}
               animate={isInView ? { y: 0, opacity: 1 } : {}}
               transition={{ duration: 0.6, delay: sectionIdx * 0.1 }}
-              className={`rounded-2xl p-6 border ${
+              className={`rounded-2xl p-5 sm:p-6 border ${
                 darkMode ? 'bg-white/3 border-white/5' : 'bg-white border-gray-100 shadow-sm'
               }`}
             >
-              <div className="flex items-center gap-3 mb-5">
+              <div className="flex items-center gap-3 mb-4">
                 <div className={`w-9 h-9 rounded-lg bg-gradient-to-br ${section.bg} flex items-center justify-center`}>
                   <section.icon className="h-4 w-4 text-white" />
                 </div>
-                <h3 className={`font-bold text-lg ${section.color}`}>{section.title}</h3>
+                <h3 className={`font-bold text-base sm:text-lg ${section.color}`}>{section.title}</h3>
               </div>
 
               <div className="flex flex-wrap gap-2">
@@ -65,7 +65,7 @@ export default function Skills({ darkMode }: SkillsProps) {
                     animate={isInView ? { scale: 1, opacity: 1 } : {}}
                     transition={{ duration: 0.3, delay: sectionIdx * 0.1 + i * 0.04 }}
                     whileHover={{ scale: 1.08, y: -2 }}
-                    className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-sm font-medium cursor-default border transition-all duration-200 ${
+                    className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs sm:text-sm font-medium cursor-default border transition-all duration-200 ${
                       darkMode
                         ? 'bg-white/5 border-white/10 text-gray-300 hover:border-blue-500/40 hover:text-white'
                         : 'bg-gray-50 border-gray-200 text-gray-700 hover:border-blue-400 hover:text-blue-600'

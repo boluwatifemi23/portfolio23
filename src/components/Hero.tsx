@@ -47,25 +47,25 @@ export default function Hero({ darkMode }: HeroProps) {
   }, [displayed, deleting, roleIndex])
 
   return (
-    <section id="home" className="relative pt-28 pb-20 px-4 sm:px-6 lg:px-8 overflow-hidden min-h-screen flex items-center">
+    <section id="home" className="relative pt-24 sm:pt-28 pb-16 sm:pb-20 px-4 sm:px-6 lg:px-8 overflow-hidden min-h-screen flex items-center">
       <FloatingParticles darkMode={darkMode} />
 
       {/* Background glow */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl" />
-        <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-purple-500/10 rounded-full blur-3xl" />
+        <div className="absolute top-1/4 left-1/4 w-64 sm:w-96 h-64 sm:h-96 bg-blue-500/10 rounded-full blur-3xl" />
+        <div className="absolute bottom-1/4 right-1/4 w-56 sm:w-80 h-56 sm:h-80 bg-purple-500/10 rounded-full blur-3xl" />
       </div>
 
       <div className="max-w-7xl mx-auto w-full relative z-10">
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
+        <div className="grid lg:grid-cols-2 gap-10 lg:gap-12 items-center">
 
           {/* Left — Text */}
-          <div>
+          <div className="order-2 lg:order-1 text-center lg:text-left">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
-              className="flex items-center gap-2 mb-4"
+              className="flex items-center gap-2 mb-4 justify-center lg:justify-start flex-wrap"
             >
               <span className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 text-sm font-medium">
                 <Sparkles className="h-3 w-3" /> Available for work
@@ -79,7 +79,7 @@ export default function Hero({ darkMode }: HeroProps) {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.1 }}
-              className="text-4xl sm:text-5xl lg:text-6xl font-extrabold mb-3 leading-tight"
+              className="text-3xl sm:text-5xl lg:text-6xl font-extrabold mb-3 leading-tight"
             >
               Hi, I&apos;m{' '}
               <span className="gradient-text">Gloria Aguedu</span>
@@ -89,7 +89,7 @@ export default function Hero({ darkMode }: HeroProps) {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
-              className="text-xl sm:text-2xl font-semibold mb-6 h-8"
+              className="text-lg sm:text-2xl font-semibold mb-5 h-8"
             >
               <span className={darkMode ? 'text-gray-300' : 'text-gray-700'}>
                 {displayed}
@@ -101,7 +101,7 @@ export default function Hero({ darkMode }: HeroProps) {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.3 }}
-              className={`text-lg mb-8 leading-relaxed max-w-xl ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}
+              className={`text-base sm:text-lg mb-7 leading-relaxed max-w-xl mx-auto lg:mx-0 ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}
             >
               From writing my first{' '}
               <code className="px-1.5 py-0.5 rounded bg-blue-500/10 text-blue-400 text-sm">&lt;h1&gt;</code>{' '}
@@ -112,13 +112,13 @@ export default function Hero({ darkMode }: HeroProps) {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.4 }}
-              className="flex flex-wrap gap-4"
+              className="flex flex-wrap gap-3 justify-center lg:justify-start"
             >
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 onClick={() => scrollToSection('projects')}
-                className="group px-7 py-3 rounded-xl font-semibold bg-gradient-to-r from-blue-600 to-purple-600 text-white hover:shadow-lg hover:shadow-blue-500/30 transition-all duration-300 flex items-center gap-2"
+                className="px-6 sm:px-7 py-3 rounded-xl font-semibold bg-gradient-to-r from-blue-600 to-purple-600 text-white hover:shadow-lg hover:shadow-blue-500/30 transition-all duration-300 flex items-center gap-2"
               >
                 View My Work
                 <motion.div animate={{ x: [0, 4, 0] }} transition={{ duration: 1.5, repeat: Infinity }}>
@@ -133,7 +133,7 @@ export default function Hero({ darkMode }: HeroProps) {
                 rel="noopener noreferrer"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className={`px-7 py-3 rounded-xl font-semibold border-2 flex items-center gap-2 transition-all duration-300 ${
+                className={`px-6 sm:px-7 py-3 rounded-xl font-semibold border-2 flex items-center gap-2 transition-all duration-300 ${
                   darkMode
                     ? 'border-white/10 text-white hover:bg-white/5'
                     : 'border-gray-300 text-gray-700 hover:bg-gray-50'
@@ -148,7 +148,7 @@ export default function Hero({ darkMode }: HeroProps) {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.5 }}
-              className="flex gap-8 mt-10"
+              className="flex gap-6 sm:gap-8 mt-8 justify-center lg:justify-start"
             >
               {[
                 { value: '2+', label: 'Years Experience' },
@@ -156,7 +156,7 @@ export default function Hero({ darkMode }: HeroProps) {
                 { value: '2', label: 'Live Products' },
               ].map((stat) => (
                 <div key={stat.label}>
-                  <div className="text-2xl font-extrabold gradient-text">{stat.value}</div>
+                  <div className="text-xl sm:text-2xl font-extrabold gradient-text">{stat.value}</div>
                   <div className={`text-xs ${darkMode ? 'text-gray-500' : 'text-gray-500'}`}>{stat.label}</div>
                 </div>
               ))}
@@ -168,7 +168,7 @@ export default function Hero({ darkMode }: HeroProps) {
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.7, delay: 0.2 }}
-            className="flex justify-center lg:justify-end"
+            className="order-1 lg:order-2 flex justify-center"
           >
             <motion.div
               animate={{ x: mousePosition.x * 0.015, y: mousePosition.y * 0.015 }}
@@ -186,7 +186,7 @@ export default function Hero({ darkMode }: HeroProps) {
               />
 
               {/* Photo */}
-              <div className="relative w-64 h-64 sm:w-80 sm:h-80 rounded-full overflow-hidden border-4 border-white/10 shadow-2xl">
+              <div className="relative w-52 h-52 sm:w-64 sm:h-64 lg:w-80 lg:h-80 rounded-full overflow-hidden border-4 border-white/10 shadow-2xl">
                 <Image
                   src="/images/gloria.png"
                   alt="Gloria Aguedu"
@@ -200,7 +200,7 @@ export default function Hero({ darkMode }: HeroProps) {
               <motion.div
                 animate={{ y: [0, -8, 0] }}
                 transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}
-                className="absolute -bottom-2 -left-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white px-4 py-2 rounded-xl text-sm font-semibold shadow-lg"
+                className="absolute -bottom-2 -left-2 sm:-left-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white px-3 sm:px-4 py-1.5 sm:py-2 rounded-xl text-xs sm:text-sm font-semibold shadow-lg"
               >
                 ⚡ Full-Stack Dev
               </motion.div>
@@ -209,7 +209,7 @@ export default function Hero({ darkMode }: HeroProps) {
               <motion.div
                 animate={{ y: [0, 8, 0] }}
                 transition={{ duration: 3.5, repeat: Infinity, ease: 'easeInOut', delay: 0.5 }}
-                className="absolute -top-2 -right-4 bg-gradient-to-r from-purple-600 to-pink-600 text-white px-4 py-2 rounded-xl text-sm font-semibold shadow-lg"
+                className="absolute -top-2 -right-2 sm:-right-4 bg-gradient-to-r from-purple-600 to-pink-600 text-white px-3 sm:px-4 py-1.5 sm:py-2 rounded-xl text-xs sm:text-sm font-semibold shadow-lg"
               >
                 🇳🇬 Lagos
               </motion.div>
