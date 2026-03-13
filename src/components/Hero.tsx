@@ -3,7 +3,7 @@
 import { motion } from 'framer-motion'
 import { ChevronRight, Download, MapPin, Sparkles } from 'lucide-react'
 import Image from 'next/image'
-import FloatingParticles from './FloatingParticles'
+
 import { useMousePosition } from '../hooks/useMousePosition'
 import { scrollToSection } from '../lib/utils'
 import { useState, useEffect } from 'react'
@@ -51,7 +51,6 @@ export default function Hero({ darkMode }: HeroProps) {
       id="home"
       className="relative pt-20 pb-16 min-h-[calc(100vh-64px)] flex items-center"
     >
-      <FloatingParticles darkMode={darkMode} />
 
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-1/4 left-1/4 w-64 sm:w-96 h-64 sm:h-96 bg-blue-500/10 rounded-full blur-3xl" />

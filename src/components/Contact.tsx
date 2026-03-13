@@ -4,9 +4,7 @@ import { useRef } from 'react'
 import { motion } from 'framer-motion'
 import { Mail, Github, Linkedin, Download, ArrowRight, MessageCircle } from 'lucide-react'
 import { useInView } from '../hooks/useInView'
-import dynamic from 'next/dynamic'
 
-const FloatingParticles = dynamic(() => import('./FloatingParticles'), { ssr: false })
 
 interface ContactProps {
   darkMode: boolean
@@ -45,8 +43,7 @@ export default function Contact({ darkMode }: ContactProps) {
 
   return (
     <section id="contact" ref={ref} className="py-16 sm:py-24 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
-      <FloatingParticles darkMode={darkMode} />
-
+   
       <div className="max-w-4xl mx-auto relative z-10">
         <motion.div
           initial={{ y: 30, opacity: 0 }}
@@ -99,7 +96,7 @@ export default function Contact({ darkMode }: ContactProps) {
           </motion.a>
         </motion.div>
 
-        {/* Contact cards */}
+      
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8 sm:mb-10">
           {contacts.map((contact, index) => {
             const isEmail = contact.href.startsWith('mailto:')
