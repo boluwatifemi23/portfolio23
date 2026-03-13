@@ -7,7 +7,7 @@ import { scrollToSection } from '../lib/utils'
 
 interface NavigationProps {
   darkMode: boolean
-  toggleDarkMode: () => void
+  setDarkMode: (val: boolean) => void
 }
 
 const navLinks = [
@@ -18,26 +18,22 @@ const navLinks = [
   { label: 'Contact', id: 'contact' },
 ]
 
-export default function Navigation({ darkMode, toggleDarkMode }: NavigationProps) {
+export default function Navigation({ darkMode, setDarkMode }: NavigationProps) {
   const [activeSection, setActiveSection] = useState('home')
   const [scrolled, setScrolled] = useState(false)
 
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 20)
-
-      const sections = navLinks.map((l) => document.getElementById(l.id))
       const scrollPos = window.scrollY + 100
-
-      for (let i = sections.length - 1; i >= 0; i--) {
-        const section = sections[i]
+      for (let i = navLinks.length - 1; i >= 0; i--) {
+        const section = document.getElementById(navLinks[i].id)
         if (section && section.offsetTop <= scrollPos) {
           setActiveSection(navLinks[i].id)
           break
         }
       }
     }
-
     window.addEventListener('scroll', handleScroll, { passive: true })
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
@@ -58,12 +54,9 @@ export default function Navigation({ darkMode, toggleDarkMode }: NavigationProps
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
 
-       
-          <button
-            onClick={() => scrollToSection('home')}
-            className="flex items-center gap-2 group"
-          >
-            <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center text-white font-bold text-xs shrink-0">
+          
+          <button onClick={() => scrollToSection('home')} className="flex items-center gap-2 shrink-0">
+            <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center text-white font-bold text-xs">
               GA
             </div>
             <span className={`font-bold text-lg ${darkMode ? 'text-white' : 'text-gray-900'}`}>
@@ -72,12 +65,12 @@ export default function Navigation({ darkMode, toggleDarkMode }: NavigationProps
           </button>
 
         
-          <div className="flex items-center gap-1 overflow-x-auto scrollbar-none">
+          <div className="flex items-center gap-0.5 overflow-x-auto scrollbar-none mx-2">
             {navLinks.map((link) => (
               <button
                 key={link.id}
                 onClick={() => scrollToSection(link.id)}
-                className={`relative px-3 py-1.5 rounded-lg text-sm font-medium transition-all duration-200 whitespace-nowrap ${
+                className={`relative px-2.5 sm:px-3 py-1.5 rounded-lg text-xs sm:text-sm font-medium transition-all duration-200 whitespace-nowrap ${
                   activeSection === link.id
                     ? 'text-blue-500'
                     : darkMode
@@ -97,9 +90,9 @@ export default function Navigation({ darkMode, toggleDarkMode }: NavigationProps
             ))}
           </div>
 
-          {/* Dark mode toggle */}
+         
           <motion.button
-            onClick={toggleDarkMode}
+            onClick={() => setDarkMode(!darkMode)}
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.9 }}
             className={`w-9 h-9 rounded-xl flex items-center justify-center border transition-all duration-200 shrink-0 ${
