@@ -3,7 +3,6 @@
 import { motion } from 'framer-motion'
 import { ChevronRight, Download, MapPin, Sparkles } from 'lucide-react'
 import Image from 'next/image'
-
 import { useMousePosition } from '../hooks/useMousePosition'
 import { scrollToSection } from '../lib/utils'
 import { useState, useEffect } from 'react'
@@ -52,16 +51,18 @@ export default function Hero({ darkMode }: HeroProps) {
       className="relative pt-20 pb-16 min-h-[calc(100vh-64px)] flex items-center"
     >
 
-      <div className="absolute inset-0 pointer-events-none">
+      {/* Background glow */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden">
         <div className="absolute top-1/4 left-1/4 w-64 sm:w-96 h-64 sm:h-96 bg-blue-500/10 rounded-full blur-3xl" />
         <div className="absolute bottom-1/4 right-1/4 w-56 sm:w-80 h-56 sm:h-80 bg-purple-500/10 rounded-full blur-3xl" />
       </div>
 
       <div className="w-full px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="max-w-7xl mx-auto">
+
           <div className="flex flex-col items-center gap-8 lg:grid lg:grid-cols-2 lg:gap-12 lg:items-center">
 
-    
+            {/* Profile Image */}
             <motion.div
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
@@ -74,27 +75,32 @@ export default function Hero({ darkMode }: HeroProps) {
                   y: Math.max(-20, Math.min(20, mousePosition.y * 0.01)),
                 }}
                 transition={{ type: 'spring', stiffness: 80, damping: 20 }}
-                className="relative max-w-full"
+                className="relative max-w-full flex justify-center"
               >
-                <div className="absolute inset-0 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 blur-2xl opacity-30 scale-110" />
+                {/* Glow wrapper that clips overflow */}
+                <div className="relative overflow-hidden rounded-full">
 
-                <motion.div
-                  animate={{ rotate: 360 }}
-                  transition={{ duration: 20, repeat: Infinity, ease: 'linear' }}
-                  className="absolute inset-0 rounded-full border-2 border-dashed border-blue-500/40"
-                />
+                  <div className="absolute inset-0 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 blur-2xl opacity-30 scale-110" />
 
-                <div className="relative w-40 h-40 sm:w-52 sm:h-52 lg:w-80 lg:h-80 rounded-full overflow-hidden border-4 border-white/10 shadow-2xl mx-auto">
-                  <Image
-                    src="/images/gloria.png"
-                    alt="Gloria Aguedu"
-                    fill
-                    className="object-cover object-top"
-                    priority
+                  <motion.div
+                    animate={{ rotate: 360 }}
+                    transition={{ duration: 20, repeat: Infinity, ease: 'linear' }}
+                    className="absolute inset-0 rounded-full border-2 border-dashed border-blue-500/40"
                   />
+
+                  <div className="relative w-40 h-40 sm:w-52 sm:h-52 lg:w-80 lg:h-80 rounded-full overflow-hidden border-4 border-white/10 shadow-2xl mx-auto">
+                    <Image
+                      src="/images/gloria.png"
+                      alt="Gloria Aguedu"
+                      fill
+                      className="object-cover object-top"
+                      priority
+                    />
+                  </div>
+
                 </div>
 
-           
+                {/* Bottom Badge */}
                 <motion.div
                   animate={{ y: [0, -6, 0] }}
                   transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}
@@ -103,6 +109,7 @@ export default function Hero({ darkMode }: HeroProps) {
                   ⚡ Full-Stack Dev
                 </motion.div>
 
+                {/* Top Badge */}
                 <motion.div
                   animate={{ y: [0, 6, 0] }}
                   transition={{ duration: 3.5, repeat: Infinity, ease: 'easeInOut', delay: 0.5 }}
@@ -114,6 +121,7 @@ export default function Hero({ darkMode }: HeroProps) {
               </motion.div>
             </motion.div>
 
+            {/* Text Content */}
             <div className="order-2 lg:order-1 w-full text-center lg:text-left">
 
               <motion.div
@@ -217,6 +225,7 @@ export default function Hero({ darkMode }: HeroProps) {
 
             </div>
           </div>
+
         </div>
       </div>
     </section>
