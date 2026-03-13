@@ -54,7 +54,7 @@ export default function Navigation({ darkMode, setDarkMode }: NavigationProps) {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
 
-          
+         
           <button onClick={() => scrollToSection('home')} className="flex items-center gap-2 shrink-0">
             <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center text-white font-bold text-xs">
               GA
@@ -64,13 +64,13 @@ export default function Navigation({ darkMode, setDarkMode }: NavigationProps) {
             </span>
           </button>
 
-        
-          <div className="flex items-center gap-0.5 overflow-x-auto scrollbar-none mx-2">
+          
+          <div className="hidden md:flex items-center gap-0.5">
             {navLinks.map((link) => (
               <button
                 key={link.id}
                 onClick={() => scrollToSection(link.id)}
-                className={`relative px-2.5 sm:px-3 py-1.5 rounded-lg text-xs sm:text-sm font-medium transition-all duration-200 whitespace-nowrap ${
+                className={`relative px-3 py-1.5 rounded-lg text-sm font-medium transition-all duration-200 whitespace-nowrap ${
                   activeSection === link.id
                     ? 'text-blue-500'
                     : darkMode
@@ -90,7 +90,7 @@ export default function Navigation({ darkMode, setDarkMode }: NavigationProps) {
             ))}
           </div>
 
-         
+          
           <motion.button
             onClick={() => setDarkMode(!darkMode)}
             whileHover={{ scale: 1.1 }}
@@ -114,6 +114,7 @@ export default function Navigation({ darkMode, setDarkMode }: NavigationProps) {
               )}
             </AnimatePresence>
           </motion.button>
+
         </div>
       </div>
     </motion.nav>
