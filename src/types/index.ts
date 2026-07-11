@@ -2,21 +2,50 @@ import type { ElementType } from 'react'
 
 export interface TechStack {
   name: string
-  projects: string[]
-  hasProjects: boolean
   color: string
 }
 
-export interface Project {
-  id: number
+export interface TechCategory {
   title: string
-  description: string
+  items: TechStack[]
+}
+
+export interface ProjectMetric {
+  label: string
+  value: string
+}
+
+export interface CaseStudySection {
+  heading: string
+  body: string
+}
+
+export interface Project {
+  slug: string
+  title: string
+  subtitle?: string
+  summary: string
+  description?: string
+  category: 'Systems & Integrations' | 'Full-Stack' | 'Frontend'
   tech: string[]
-  image: string
-  github: string
-  live: string
+  image?: string
+  gallery?: string[]
+  github?: string
+  live?: string
   featured: boolean
-  category: string
+  flagship?: boolean
+  parent?: string
+  metrics?: ProjectMetric[]
+  sections?: CaseStudySection[]
+  order: number
+}
+
+export interface ExperienceEntry {
+  id: string
+  role: string
+  company: string
+  period: string
+  bullets: string[]
 }
 
 export interface ContactInfo {
