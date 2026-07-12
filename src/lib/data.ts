@@ -68,7 +68,7 @@ export const projects: Project[] = [
     summary: 'A suite of four connected systems handling lead capture, nurture, sales-pipeline analytics, and internal operations — integrated across Freshsales, Freshmarketer, SendGrid, and Twilio.',
     category: 'Systems & Integrations',
     tech: ['Next.js', 'Node.js', 'MongoDB', 'Freshsales API', 'Freshmarketer', 'Twilio', 'SendGrid', 'Webhooks'],
-    image: '/images/harmony-garden-cover.png', // TODO: pending mockup
+    image: '/images/harmony-garden-cover.svg',
     featured: true,
     flagship: true,
     order: 1,
@@ -80,7 +80,7 @@ export const projects: Project[] = [
     summary: '5 sender identities, 9 templates, 56,000+ leads managed with daily automated sends, tracking, and analytics.',
     category: 'Systems & Integrations',
     tech: ['Node.js', 'Express', 'MongoDB', 'SendGrid', 'node-cron'],
-    image: '/images/harmony-campaign-engine.png', // TODO
+    image: '/images/harmony-campaign-engine.svg',
     featured: false,
     order: 2,
   },
@@ -91,7 +91,7 @@ export const projects: Project[] = [
     summary: 'A 24-week automated drip sequence across SMS and email with a live, real-time dashboard powered by Server-Sent Events.',
     category: 'Systems & Integrations',
     tech: ['Node.js', 'Twilio', 'SendGrid', 'Server-Sent Events', 'MongoDB', 'node-cron'],
-    image: '/images/harmony-sms-nurture.png', // TODO
+    image: '/images/harmony-sms-nurture.svg',
     featured: false,
     order: 3,
   },
@@ -102,7 +102,7 @@ export const projects: Project[] = [
     summary: 'A multi-stage sales pipeline dashboard reading live from Freshsales, embedded directly inside Freshsales as an iframe widget.',
     category: 'Systems & Integrations',
     tech: ['Node.js', 'Express', 'Freshsales API'],
-    image: '/images/harmony-kpi-dashboard.png', // TODO
+    image: '/images/harmony-kpi-dashboard.svg',
     featured: false,
     order: 4,
   },
@@ -113,7 +113,7 @@ export const projects: Project[] = [
     summary: 'Employee management, KPI/appraisal scoring, role-based access, audit logs, and a rule engine routing webhook events from three different platforms into real-time push notifications.',
     category: 'Systems & Integrations',
     tech: ['Next.js', 'TypeScript', 'MongoDB', 'PWA', 'Web Push', 'JWT Auth', 'Cloudinary', 'Google Sheets API'],
-    image: '/images/harmony-galadima.png', // TODO
+    image: '/images/harmony-galadima.svg',
     featured: false,
     order: 5,
   },

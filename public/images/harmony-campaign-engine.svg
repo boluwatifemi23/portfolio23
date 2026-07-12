@@ -1,0 +1,42 @@
+<svg viewBox="0 0 800 480" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="480" fill="#0D0F0E"/>
+  <defs>
+    <pattern id="grid1" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1A1D1B" stroke-width="1"/>
+    </pattern>
+  </defs>
+  <rect width="800" height="480" fill="url(#grid1)"/>
+  <circle cx="44" cy="46" r="4" fill="#3ECF7E"/>
+  <text x="56" y="51" font-family="Consolas, Menlo, monospace" font-size="12" letter-spacing="2" fill="#3ECF7E">LIVE SYSTEM</text>
+  <text x="40" y="90" font-family="Arial, sans-serif" font-size="30" font-weight="700" fill="#F3F1EA">Campaign Analytics</text>
+  <text x="40" y="116" font-family="Consolas, Menlo, monospace" font-size="14" fill="#8B948C">Diaspora Outreach · 56,000+ Leads</text>
+  <g font-family="Consolas, Menlo, monospace">
+    <rect x="40" y="150" width="165" height="110" fill="none" stroke="#262B27"/>
+    <text x="58" y="180" font-size="11" letter-spacing="1.5" fill="#8B948C">LEADS REACHED</text>
+    <text x="58" y="222" font-size="30" font-weight="700" fill="#3ECF7E">9,400+</text>
+    <rect x="220" y="150" width="165" height="110" fill="none" stroke="#262B27"/>
+    <text x="238" y="180" font-size="11" letter-spacing="1.5" fill="#8B948C">EMAILS SENT</text>
+    <text x="238" y="222" font-size="30" font-weight="700" fill="#3ECF7E">40,000+</text>
+    <rect x="400" y="150" width="165" height="110" fill="none" stroke="#262B27"/>
+    <text x="418" y="180" font-size="11" letter-spacing="1.5" fill="#8B948C">OPEN RATE</text>
+    <text x="418" y="222" font-size="30" font-weight="700" fill="#3ECF7E">70%+</text>
+    <rect x="580" y="150" width="165" height="110" fill="none" stroke="#262B27"/>
+    <text x="598" y="180" font-size="11" letter-spacing="1.5" fill="#8B948C">SENDERS</text>
+    <text x="598" y="222" font-size="30" font-weight="700" fill="#3ECF7E">5</text>
+  </g>
+  <text x="40" y="300" font-family="Consolas, Menlo, monospace" font-size="12" letter-spacing="2" fill="#8B948C">SENDER PROGRESS</text>
+  <g font-family="Consolas, Menlo, monospace" font-size="12">
+    <text x="40" y="318" fill="#F3F1EA">Sender-01</text>
+    <text x="760" y="318" text-anchor="end" fill="#3ECF7E">35%</text>
+    <rect x="40" y="326" width="720" height="10" fill="#181B19"/>
+    <rect x="40" y="326" width="252" height="10" fill="#3ECF7E"/>
+    <text x="40" y="358" fill="#F3F1EA">Sender-02</text>
+    <text x="760" y="358" text-anchor="end" fill="#3ECF7E">42%</text>
+    <rect x="40" y="366" width="720" height="10" fill="#181B19"/>
+    <rect x="40" y="366" width="302" height="10" fill="#3ECF7E"/>
+    <text x="40" y="398" fill="#F3F1EA">Sender-03</text>
+    <text x="760" y="398" text-anchor="end" fill="#3ECF7E">48%</text>
+    <rect x="40" y="406" width="720" height="10" fill="#181B19"/>
+    <rect x="40" y="406" width="346" height="10" fill="#3ECF7E"/>
+  </g>
+</svg>

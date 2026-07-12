@@ -1,0 +1,38 @@
+<svg viewBox="0 0 800 480" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="480" fill="#0D0F0E"/>
+  <defs>
+    <pattern id="grid5" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1A1D1B" stroke-width="1"/>
+    </pattern>
+  </defs>
+  <rect width="800" height="480" fill="url(#grid5)"/>
+  <circle cx="44" cy="46" r="4" fill="#FF6A3D"/>
+  <text x="56" y="51" font-family="Consolas, Menlo, monospace" font-size="12" letter-spacing="2" fill="#FF6A3D">FLAGSHIP PLATFORM</text>
+  <text x="40" y="90" font-family="Arial, sans-serif" font-size="30" font-weight="700" fill="#F3F1EA">Harmony Garden</text>
+  <text x="40" y="116" font-family="Consolas, Menlo, monospace" font-size="14" fill="#8B948C">Growth &amp; Operations Platform</text>
+  <rect x="200" y="130" width="400" height="32" fill="none" stroke="#FF6A3D"/>
+  <text x="400" y="151" text-anchor="middle" font-family="Consolas, Menlo, monospace" font-size="11" letter-spacing="1" fill="#FF6A3D">Freshsales · Freshmarketer · Twilio · SendGrid</text>
+  <line x1="210" y1="162" x2="210" y2="185" stroke="#262B27"/>
+  <line x1="590" y1="162" x2="590" y2="185" stroke="#262B27"/>
+  <line x1="400" y1="305" x2="400" y2="335" stroke="#262B27"/>
+  <rect x="40" y="185" width="340" height="120" fill="none" stroke="#262B27"/>
+  <circle cx="60" cy="205" r="3" fill="#3ECF7E"/>
+  <text x="72" y="209" font-family="Arial, sans-serif" font-size="15" font-weight="700" fill="#F3F1EA">Campaign Engine</text>
+  <text x="60" y="240" font-family="Consolas, Menlo, monospace" font-size="12" fill="#8B948C">56,000+ Leads · 5 Senders</text>
+  <text x="60" y="280" font-family="Consolas, Menlo, monospace" font-size="11" fill="#3ECF7E">View system &#8594;</text>
+  <rect x="420" y="185" width="340" height="120" fill="none" stroke="#262B27"/>
+  <circle cx="440" cy="205" r="3" fill="#3ECF7E"/>
+  <text x="452" y="209" font-family="Arial, sans-serif" font-size="15" font-weight="700" fill="#F3F1EA">SMS + Email Nurture</text>
+  <text x="440" y="240" font-family="Consolas, Menlo, monospace" font-size="12" fill="#8B948C">24-Week Automated Cycle</text>
+  <text x="440" y="280" font-family="Consolas, Menlo, monospace" font-size="11" fill="#3ECF7E">View system &#8594;</text>
+  <rect x="40" y="335" width="340" height="120" fill="none" stroke="#262B27"/>
+  <circle cx="60" cy="355" r="3" fill="#3ECF7E"/>
+  <text x="72" y="359" font-family="Arial, sans-serif" font-size="15" font-weight="700" fill="#F3F1EA">KPI Dashboard</text>
+  <text x="60" y="390" font-family="Consolas, Menlo, monospace" font-size="12" fill="#8B948C">Live Freshsales Sync</text>
+  <text x="60" y="430" font-family="Consolas, Menlo, monospace" font-size="11" fill="#3ECF7E">View system &#8594;</text>
+  <rect x="420" y="335" width="340" height="120" fill="none" stroke="#262B27"/>
+  <circle cx="440" cy="355" r="3" fill="#3ECF7E"/>
+  <text x="452" y="359" font-family="Arial, sans-serif" font-size="15" font-weight="700" fill="#F3F1EA">Galadima Ops</text>
+  <text x="440" y="390" font-family="Consolas, Menlo, monospace" font-size="12" fill="#8B948C">3-Platform Webhook Router</text>
+  <text x="440" y="430" font-family="Consolas, Menlo, monospace" font-size="11" fill="#3ECF7E">View system &#8594;</text>
+</svg>
