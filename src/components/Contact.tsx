@@ -2,7 +2,7 @@
 
 import { useRef } from 'react'
 import { motion } from 'framer-motion'
-import { Mail, Github, Linkedin, Download, ArrowRight, MessageCircle } from 'lucide-react'
+import { Mail, Github, Linkedin, Download, ArrowRight, MessageCircle, Phone } from 'lucide-react'
 import { useInView } from '../hooks/useInView'
 
 
@@ -38,6 +38,15 @@ export default function Contact({ darkMode }: ContactProps) {
       href: 'https://www.linkedin.com/in/coding-professional-276516264',
       color: 'from-blue-500 to-blue-700',
       desc: 'Professional network',
+    },
+
+    {
+      icon: Phone,
+      title: 'WhatsApp',
+      value: '+234 802 358 5979', 
+      href: 'https://wa.me/2348023585979',
+      color: 'from-green-500 to-emerald-600',
+      desc: 'Quick chat, fastest reply',
     },
   ]
 
@@ -97,7 +106,7 @@ export default function Contact({ darkMode }: ContactProps) {
         </motion.div>
 
       
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8 sm:mb-10">
+       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8 sm:mb-10">
           {contacts.map((contact, index) => {
             const isEmail = contact.href.startsWith('mailto:')
 

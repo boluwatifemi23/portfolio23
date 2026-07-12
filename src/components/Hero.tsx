@@ -4,18 +4,19 @@ import { motion } from 'framer-motion'
 import { ChevronRight, Download, MapPin, Sparkles } from 'lucide-react'
 import Image from 'next/image'
 import { useMousePosition } from '../hooks/useMousePosition'
-import { scrollToSection } from '../lib/utils'
+import { scrollToSection, getExperienceYears } from '../lib/utils'
 import { useState, useEffect } from 'react'
+import { projects } from '../lib/data'
 
 interface HeroProps {
   darkMode: boolean
 }
 
 const roles = [
-  'Full-Stack Software Engineer',
-  'React & Next.js Developer',
-  'Backend API Specialist',
-  'UI/UX Focused Frontend Engineer',
+  'CRM Implementation Specialist',
+  'Full-Stack Developer',
+  'Systems & API Integration Engineer',
+  'Freshworks Automation Specialist',
   'Open to Global Opportunities',
 ]
 
@@ -106,7 +107,7 @@ export default function Hero({ darkMode }: HeroProps) {
                   transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}
                   className="absolute -bottom-3 left-1/2 -translate-x-1/2 bg-gradient-to-r from-blue-600 to-purple-600 text-white px-3 py-1.5 rounded-xl text-xs font-bold shadow-lg whitespace-nowrap"
                 >
-                  ⚡ Full-Stack Dev
+                  ⚡ Systems Builder
                 </motion.div>
 
                 {/* Top Badge */}
@@ -169,7 +170,7 @@ export default function Hero({ darkMode }: HeroProps) {
               >
                 From writing my first{' '}
                 <code className="px-1.5 py-0.5 rounded bg-blue-500/10 text-blue-400 text-sm">&lt;h1&gt;</code>{' '}
-                tag in Lagos to shipping full-stack production apps — I build digital experiences that work beautifully, perform flawlessly, and make businesses grow.
+                tag to architecting CRM-integrated systems that run a real company&apos;s sales and marketing operations — I build software that solves operational problems, not just interfaces. Currently wiring together Freshsales, Freshmarketer, Twilio, and SendGrid into systems processing tens of thousands of leads.
               </motion.p>
 
               <motion.div
@@ -205,16 +206,16 @@ export default function Hero({ darkMode }: HeroProps) {
                 </motion.a>
               </motion.div>
 
-              <motion.div
+             <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.5 }}
                 className="flex gap-8 mt-8 justify-center lg:justify-start"
               >
                 {[
-                  { value: '2+', label: 'Years Exp.' },
-                  { value: '7+', label: 'Projects' },
-                  { value: '3', label: 'Live Apps' },
+                  { value: getExperienceYears(), label: 'Years Exp.' },
+                  { value: `${projects.filter((p) => !p.parent).length}+`, label: 'Projects' },
+                  { value: `${projects.filter((p) => !p.parent && p.live).length}+`, label: 'Live Systems' },
                 ].map((stat) => (
                   <div key={stat.label} className="text-center lg:text-left">
                     <div className="text-xl sm:text-2xl font-extrabold gradient-text">{stat.value}</div>

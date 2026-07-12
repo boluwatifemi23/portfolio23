@@ -5,6 +5,8 @@ import { motion } from 'framer-motion'
 import { Github, Linkedin, Mail, Heart, Rocket, Code2, Globe } from 'lucide-react'
 import Image from 'next/image'
 import { useInView } from '../hooks/useInView'
+import { projects } from '../lib/data'
+import { getExperienceYears } from '../lib/utils'
 
 interface AboutProps {
   darkMode: boolean
@@ -12,30 +14,30 @@ interface AboutProps {
 
 const timeline = [
   {
-    year: '2023',
+    year: 'Early 2025',
     title: 'Where It All Began',
     desc: 'Wrote my first lines of HTML and CSS. Fell in love with seeing designs come to life in the browser.',
     icon: Code2,
     color: 'from-blue-500 to-cyan-500',
   },
   {
-    year: '2023',
-    title: 'JavaScript & React',
-    desc: "Discovered JavaScript's power, then React's magic. Built my first interactive UIs and fell deeper in.",
+    year: 'Mid-late 2025',
+    title: 'Full-Stack, Fast',
+    desc: "JavaScript, then React, then Node.js and MongoDB. Went from static pages to building complete applications in months.",
     icon: Heart,
     color: 'from-pink-500 to-rose-500',
   },
   {
-    year: '2024',
-    title: 'Going Full-Stack',
-    desc: 'Dove into Node.js, Express, MongoDB. Suddenly I could build anything — front to back, end to end.',
+    year: 'May 2026',
+    title: 'Real Systems, Real Stakes',
+    desc: 'Joined Harmony Garden as CRM Implementation Specialist — architecting integrations across Freshsales, Freshmarketer, Twilio, and SendGrid.',
     icon: Rocket,
     color: 'from-purple-500 to-indigo-500',
   },
   {
-    year: '2025',
-    title: 'Production-Ready',
-    desc: 'Launched real products used by real people. From food ordering platforms to social networks.',
+    year: 'Now',
+    title: 'Building at Scale',
+    desc: 'Leading the build-out of an in-house CRM, shipping production systems, and building my own full-stack products alongside it.',
     icon: Globe,
     color: 'from-green-500 to-emerald-500',
   },
@@ -98,14 +100,14 @@ export default function About({ darkMode }: AboutProps) {
               transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}
               className="absolute -top-3 -right-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white px-3 py-1.5 rounded-xl text-xs font-bold shadow-lg"
             >
-              2+ Years
+              {getExperienceYears()} Years
             </motion.div>
             <motion.div
               animate={{ y: [0, 6, 0] }}
               transition={{ duration: 3.5, repeat: Infinity, ease: 'easeInOut', delay: 0.5 }}
               className="absolute -bottom-3 -left-3 bg-gradient-to-r from-green-500 to-emerald-600 text-white px-3 py-1.5 rounded-xl text-xs font-bold shadow-lg"
             >
-              6+ Projects
+              {projects.filter((p) => !p.parent).length}+ Projects
             </motion.div>
           </motion.div>
 
@@ -117,13 +119,13 @@ export default function About({ darkMode }: AboutProps) {
             className="flex flex-col gap-4"
           >
             <p className={`text-base sm:text-lg leading-relaxed ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
-              I&apos;m <strong className={darkMode ? 'text-white' : 'text-gray-900'}>Gloria</strong>, a Full-Stack Developer based in Lagos, Nigeria, with 2 years of hands-on experience turning ideas into production-ready digital products.
+              I&apos;m <strong className={darkMode ? 'text-white' : 'text-gray-900'}>Gloria</strong>, a CRM Implementation Specialist and Full-Stack Developer based in Lagos, Nigeria. In just over a year of professional work, I&apos;ve gone from my first lines of code to architecting the integration layer running a real company&apos;s sales and marketing operations.
             </p>
             <p className={`text-base sm:text-lg leading-relaxed ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>
-              My journey started with the basics — HTML, CSS, the fundamentals — and grew into something much bigger. I discovered JavaScript, then React, then the world of backend development with Node.js and MongoDB. Each step unlocked a new level of what I could build.
+              My path started in early 2025 with the fundamentals — HTML, CSS, then JavaScript and React. Within months I was building full-stack, with Node.js and MongoDB on the backend. What sets my work apart isn&apos;t just the stack — it&apos;s using it to solve real business problems: wiring CRMs together, automating outreach, and building the systems that make a company actually run.
             </p>
             <p className={`text-base sm:text-lg leading-relaxed ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>
-              Today I build <strong className={darkMode ? 'text-white' : 'text-gray-900'}>complete, real-world applications</strong> — from e-commerce platforms with live payment processing to social networks with community features. Whether you need a business website, a customer-facing product, or a complex web app, I&apos;ve got you covered.
+              Today I lead CRM implementation for <strong className={darkMode ? 'text-white' : 'text-gray-900'}>Harmony Garden</strong> — architecting integrations across Freshsales, Freshmarketer, Twilio, and SendGrid, and building the systems that manage their entire lead-to-close pipeline. Alongside that, I design and ship my own full-stack products, from e-commerce platforms with live payments to social platforms with real users.
             </p>
 
             {/* Socials */}
