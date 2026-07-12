@@ -1,79 +1,60 @@
 @import "tailwindcss";
 
+@theme {
+  --color-ink: #0D0F0E;
+  --color-paper: #F3F1EA;
+  --color-signal: #3ECF7E;
+  --color-alert: #FF6A3D;
+  --color-line: #262B27;
+  --color-muted: #8B948C;
+
+  --font-display: var(--font-space-grotesk);
+  --font-body: var(--font-plex-sans);
+  --font-mono: var(--font-plex-mono);
+}
+
 @layer base {
-  :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+  html {
+    scroll-behavior: smooth;
   }
 
-  .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
+  body {
+    font-family: var(--font-body);
   }
 }
 
 @layer utilities {
-  .gradient-text {
-    background: linear-gradient(90deg, #3b82f6, #8b5cf6, #ec4899);
-    background-size: 200% 200%;
-    animation: gradient 3s ease infinite;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+  /* Faint blueprint-style grid — ambient texture on dark surfaces, used sparingly */
+  .grid-texture {
+    background-image:
+      linear-gradient(to right, var(--color-line) 1px, transparent 1px),
+      linear-gradient(to bottom, var(--color-line) 1px, transparent 1px);
+    background-size: 48px 48px;
+    mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, black 40%, transparent 100%);
+    -webkit-mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, black 40%, transparent 100%);
   }
 
-  @keyframes gradient {
-    0% {
-      background-position: 0% 50%;
-    }
-    50% {
-      background-position: 100% 50%;
-    }
-    100% {
-      background-position: 0% 50%;
-    }
-  }
-
-  @keyframes float {
-    0%,
-    100% {
-      transform: translateY(0) translateX(0);
-    }
-    25% {
-      transform: translateY(-20px) translateX(10px);
-    }
-    50% {
-      transform: translateY(-10px) translateX(-10px);
-    }
-    75% {
-      transform: translateY(-30px) translateX(5px);
-    }
-  }
-
-  .animate-float {
-    animation: float ease-in-out infinite;
+  /* The recurring live-status motif — used in nav, hero, and project cards */
+  .status-dot {
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    border-radius: 9999px;
+    background: var(--color-signal);
+    box-shadow: 0 0 0 3px rgba(62, 207, 126, 0.2);
   }
 }
 
-/* Smooth scrolling */
-html {
-  scroll-behavior: smooth;
-}
-
-/* Custom scrollbar for dark mode */
-.dark::-webkit-scrollbar {
+::-webkit-scrollbar {
   width: 10px;
 }
-
-.dark::-webkit-scrollbar-track {
-  background: #1f2937;
+::-webkit-scrollbar-track {
+  background: var(--color-ink);
 }
-
-.dark::-webkit-scrollbar-thumb {
-  background: #4b5563;
+::-webkit-scrollbar-thumb {
+  background: var(--color-line);
   border-radius: 5px;
 }
-
-.dark::-webkit-scrollbar-thumb:hover {
-  background: #6b7280;
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-muted);
 }

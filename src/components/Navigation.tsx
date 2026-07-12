@@ -62,63 +62,70 @@ export default function Navigation({ darkMode, setDarkMode }: NavigationProps) {
       initial={{ y: -80, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.5 }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 border-b ${
         scrolled || mobileOpen
           ? darkMode
-            ? 'bg-gray-950/95 backdrop-blur-xl border-b border-white/5 shadow-xl'
-            : 'bg-white/95 backdrop-blur-xl border-b border-gray-100 shadow-md'
-          : 'bg-transparent'
+            ? 'bg-ink/95 backdrop-blur-xl border-line'
+            : 'bg-paper/95 backdrop-blur-xl border-gray-200'
+          : darkMode
+          ? 'bg-transparent border-transparent'
+          : 'bg-transparent border-transparent'
       }`}
     >
       <div className="w-full px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto flex items-center justify-between h-16">
 
           {/* Logo */}
-          <button onClick={() => handleNavClick('home')} className="flex items-center gap-2 shrink-0">
-            <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center text-white font-bold text-xs shrink-0">
+          <button onClick={() => handleNavClick('home')} className="flex items-center gap-2.5 shrink-0">
+            <div className={`w-8 h-8 rounded-md border flex items-center justify-center font-mono text-[11px] font-medium shrink-0 ${
+              darkMode ? 'border-line text-signal' : 'border-gray-300 text-emerald-600'
+            }`}>
               GA
             </div>
-            <span className={`font-bold text-base sm:text-lg ${darkMode ? 'text-white' : 'text-gray-900'}`}>
-              Gloria<span className="text-blue-500">.</span>
+            <span className={`font-display font-bold text-base sm:text-lg ${darkMode ? 'text-paper' : 'text-ink'}`}>
+              Gloria Aguedu
             </span>
           </button>
 
           {/* Desktop nav links */}
-          <div className="hidden md:flex items-center gap-0.5">
+          <div className="hidden md:flex items-center gap-1">
             {navLinks.map((link) => (
               <button
                 key={link.id}
                 onClick={() => handleNavClick(link.id)}
-                className={`relative px-3 py-1.5 rounded-lg text-sm font-medium transition-all duration-200 whitespace-nowrap ${
+                className={`relative px-3 py-1.5 text-sm font-medium transition-colors duration-200 whitespace-nowrap ${
                   activeSection === link.id
-                    ? 'text-blue-500'
+                    ? darkMode ? 'text-signal' : 'text-emerald-600'
                     : darkMode
-                    ? 'text-gray-400 hover:text-white'
-                    : 'text-gray-600 hover:text-gray-900'
+                    ? 'text-muted hover:text-paper'
+                    : 'text-gray-500 hover:text-ink'
                 }`}
               >
+                {link.label}
                 {activeSection === link.id && (
                   <motion.div
-                    layoutId="active-pill"
-                    className={`absolute inset-0 rounded-lg ${darkMode ? 'bg-blue-500/10' : 'bg-blue-50'}`}
+                    layoutId="active-underline"
+                    className={`absolute left-3 right-3 -bottom-0.5 h-[1.5px] ${darkMode ? 'bg-signal' : 'bg-emerald-600'}`}
                     transition={{ type: 'spring', stiffness: 350, damping: 30 }}
                   />
                 )}
-                <span className="relative z-10">{link.label}</span>
               </button>
             ))}
           </div>
 
           {/* Right controls */}
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-3">
+            <span className={`hidden lg:flex items-center gap-2 font-mono text-[11px] uppercase tracking-wide ${darkMode ? 'text-muted' : 'text-gray-500'}`}>
+              <span className="status-dot" /> Available for work
+            </span>
+
             <motion.button
               onClick={() => setDarkMode(!darkMode)}
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.9 }}
-              className={`w-9 h-9 rounded-xl flex items-center justify-center border transition-all duration-200 shrink-0 ${
+              whileTap={{ scale: 0.92 }}
+              className={`w-9 h-9 rounded-md flex items-center justify-center border transition-colors duration-200 shrink-0 ${
                 darkMode
-                  ? 'bg-white/5 border-white/10 text-yellow-400 hover:bg-white/10'
-                  : 'bg-gray-100 border-gray-200 text-gray-600 hover:bg-gray-200'
+                  ? 'border-line text-muted hover:text-signal hover:border-signal/40'
+                  : 'border-gray-300 text-gray-500 hover:text-emerald-600 hover:border-emerald-400'
               }`}
               aria-label="Toggle dark mode"
             >
@@ -135,14 +142,13 @@ export default function Navigation({ darkMode, setDarkMode }: NavigationProps) {
               </AnimatePresence>
             </motion.button>
 
-            {/* Hamburger — mobile only */}
             <motion.button
               onClick={() => setMobileOpen(!mobileOpen)}
-              whileTap={{ scale: 0.9 }}
-              className={`md:hidden w-9 h-9 rounded-xl flex items-center justify-center border transition-all duration-200 shrink-0 ${
+              whileTap={{ scale: 0.92 }}
+              className={`md:hidden w-9 h-9 rounded-md flex items-center justify-center border transition-colors duration-200 shrink-0 ${
                 darkMode
-                  ? 'bg-white/5 border-white/10 text-white hover:bg-white/10'
-                  : 'bg-gray-100 border-gray-200 text-gray-700 hover:bg-gray-200'
+                  ? 'border-line text-paper hover:text-signal'
+                  : 'border-gray-300 text-ink hover:text-emerald-600'
               }`}
               aria-label="Toggle menu"
             >
@@ -171,9 +177,7 @@ export default function Navigation({ darkMode, setDarkMode }: NavigationProps) {
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.25, ease: 'easeInOut' }}
-            className={`md:hidden overflow-hidden border-t ${
-              darkMode ? 'border-white/5' : 'border-gray-100'
-            }`}
+            className={`md:hidden overflow-hidden border-t ${darkMode ? 'border-line' : 'border-gray-200'}`}
           >
             <div className="px-4 py-3 flex flex-col gap-1">
               {navLinks.map((link, i) => (
@@ -183,14 +187,14 @@ export default function Navigation({ darkMode, setDarkMode }: NavigationProps) {
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ duration: 0.2, delay: i * 0.05 }}
                   onClick={() => handleNavClick(link.id)}
-                  className={`w-full text-left px-4 py-3 rounded-xl text-sm font-medium transition-all duration-200 ${
+                  className={`w-full text-left px-4 py-3 text-sm font-medium border-l-2 transition-colors duration-200 ${
                     activeSection === link.id
                       ? darkMode
-                        ? 'bg-blue-500/15 text-blue-400'
-                        : 'bg-blue-50 text-blue-600'
+                        ? 'border-signal text-signal bg-white/[0.02]'
+                        : 'border-emerald-600 text-emerald-600 bg-black/[0.02]'
                       : darkMode
-                      ? 'text-gray-300 hover:bg-white/5 hover:text-white'
-                      : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900'
+                      ? 'border-transparent text-muted hover:text-paper'
+                      : 'border-transparent text-gray-500 hover:text-ink'
                   }`}
                 >
                   {link.label}
