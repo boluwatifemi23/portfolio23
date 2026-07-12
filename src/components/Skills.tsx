@@ -10,12 +10,12 @@ interface SkillsProps {
   darkMode: boolean
 }
 
-const categoryStyle: Record<string, { icon: typeof Layers; color: string; bg: string }> = {
-  'Frontend': { icon: Layers, color: 'text-blue-400', bg: 'from-blue-500 to-cyan-500' },
-  'Backend': { icon: Server, color: 'text-green-400', bg: 'from-green-500 to-emerald-600' },
-  'Integrations & Automation': { icon: Workflow, color: 'text-pink-400', bg: 'from-pink-500 to-rose-600' },
-  'Database & Cloud': { icon: Database, color: 'text-purple-400', bg: 'from-purple-500 to-indigo-600' },
-  'Tools & Platforms': { icon: Wrench, color: 'text-orange-400', bg: 'from-orange-500 to-amber-600' },
+const categoryIcon: Record<string, typeof Layers> = {
+  'Frontend': Layers,
+  'Backend': Server,
+  'Integrations & Automation': Workflow,
+  'Database & Cloud': Database,
+  'Tools & Platforms': Wrench,
 }
 
 export default function Skills({ darkMode }: SkillsProps) {
@@ -23,7 +23,7 @@ export default function Skills({ darkMode }: SkillsProps) {
   const isInView = useInView(ref, 0.1)
 
   return (
-    <section id="skills" ref={ref} className={`py-16 sm:py-24 px-4 sm:px-6 lg:px-8 ${darkMode ? '' : 'bg-gray-50'}`}>
+    <section id="skills" ref={ref} className="py-16 sm:py-24 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
         <motion.div
           initial={{ y: 30, opacity: 0 }}
@@ -31,52 +31,51 @@ export default function Skills({ darkMode }: SkillsProps) {
           transition={{ duration: 0.6 }}
           className="text-center mb-10 sm:mb-16"
         >
-          <span className="inline-block px-4 py-1.5 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 text-sm font-semibold mb-4">
-            Technical Skills
+          <span className={`inline-flex items-center gap-2 px-3 py-1 border font-mono text-xs uppercase tracking-wide mb-3 ${
+            darkMode ? 'border-line text-signal' : 'border-gray-300 text-emerald-600'
+          }`}>
+            <span className="status-dot" /> Technical Skills
           </span>
-          <h2 className="text-3xl sm:text-4xl font-extrabold">What I Work With</h2>
-          <p className={`mt-3 text-base sm:text-lg max-w-xl mx-auto ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>
+          <h2 className="font-display text-3xl sm:text-4xl font-bold">What I Work With</h2>
+          <p className={`mt-3 text-base sm:text-lg max-w-xl mx-auto ${darkMode ? 'text-muted' : 'text-gray-600'}`}>
             Every tool here has been used in a real project — no filler, no fluff.
           </p>
         </motion.div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-8">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
           {techStack.map((category, sectionIdx) => {
-            const style = categoryStyle[category.title] ?? { icon: Wrench, color: 'text-gray-400', bg: 'from-gray-500 to-gray-700' }
+            const Icon = categoryIcon[category.title] ?? Wrench
             return (
               <motion.div
                 key={category.title}
                 initial={{ y: 30, opacity: 0 }}
                 animate={isInView ? { y: 0, opacity: 1 } : {}}
                 transition={{ duration: 0.6, delay: sectionIdx * 0.1 }}
-                className={`rounded-2xl p-5 sm:p-6 border ${
-                  darkMode ? 'bg-white/3 border-white/5' : 'bg-white border-gray-100 shadow-sm'
-                }`}
+                className={`p-5 sm:p-6 border ${darkMode ? 'border-line' : 'border-gray-200 bg-white'}`}
               >
                 <div className="flex items-center gap-3 mb-4">
-                  <div className={`w-9 h-9 rounded-lg bg-gradient-to-br ${style.bg} flex items-center justify-center`}>
-                    <style.icon className="h-4 w-4 text-white" />
+                  <div className={`w-9 h-9 rounded-md border flex items-center justify-center ${
+                    darkMode ? 'border-line text-signal' : 'border-gray-300 text-emerald-600'
+                  }`}>
+                    <Icon className="h-4 w-4" />
                   </div>
-                  <h3 className={`font-bold text-base sm:text-lg ${style.color}`}>{category.title}</h3>
+                  <h3 className={`font-display font-semibold text-base sm:text-lg ${darkMode ? 'text-paper' : 'text-ink'}`}>
+                    {category.title}
+                  </h3>
                 </div>
 
                 <div className="flex flex-wrap gap-2">
-                  {category.items.map((tech, i) => (
-                    <motion.div
+                  {category.items.map((tech) => (
+                    <span
                       key={tech.name}
-                      initial={{ scale: 0.8, opacity: 0 }}
-                      animate={isInView ? { scale: 1, opacity: 1 } : {}}
-                      transition={{ duration: 0.3, delay: sectionIdx * 0.1 + i * 0.04 }}
-                      whileHover={{ scale: 1.08, y: -2 }}
-                      className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs sm:text-sm font-medium cursor-default border transition-all duration-200 ${
+                      className={`px-2.5 py-1 font-mono text-xs border transition-colors duration-200 ${
                         darkMode
-                          ? 'bg-white/5 border-white/10 text-gray-300 hover:border-blue-500/40 hover:text-white'
-                          : 'bg-gray-50 border-gray-200 text-gray-700 hover:border-blue-400 hover:text-blue-600'
+                          ? 'border-line text-muted hover:text-signal hover:border-signal/40'
+                          : 'border-gray-200 text-gray-600 hover:text-emerald-600 hover:border-emerald-400'
                       }`}
                     >
-                      <span className={`w-2 h-2 rounded-full bg-gradient-to-br ${tech.color}`} />
                       {tech.name}
-                    </motion.div>
+                    </span>
                   ))}
                 </div>
               </motion.div>
