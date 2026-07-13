@@ -100,6 +100,15 @@ export default async function ProjectPage({ params }: PageProps) {
             <p className="text-lg sm:text-xl text-muted mb-6">{project.subtitle}</p>
           )}
 
+          {project.image && (
+            // eslint-disable-next-line @next/next/no-img-element
+            <img
+              src={project.image}
+              alt={project.title}
+              className="w-full h-auto border border-line mb-8"
+            />
+          )}
+
           <p className="text-base sm:text-lg text-paper/85 leading-relaxed mb-8">
             {project.description || project.summary}
           </p>
@@ -170,8 +179,8 @@ export default async function ProjectPage({ params }: PageProps) {
                 </a>
               )}
               {project.live && (
-                <a
-                  href={project.live}
+                
+               <a   href={project.live}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 px-5 py-2.5 font-semibold bg-signal text-ink hover:bg-signal/90 transition-colors duration-200"
