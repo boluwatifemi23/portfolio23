@@ -24,8 +24,8 @@ export default function Contact({ darkMode }: ContactProps) {
     {
       icon: Phone,
       title: 'WhatsApp',
-      value: '+234 XXX XXX XXXX', // TODO: replace with your real number
-      href: 'https://wa.me/234XXXXXXXXXX', // TODO: replace XXXXXXXXXX with your number, no + or leading 0
+      value: '+234 802 358 5979', 
+      href: 'https://wa.me/2348023585979',
       desc: 'Quick chat, fastest reply',
     },
     {
