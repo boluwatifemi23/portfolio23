@@ -70,7 +70,7 @@ export const projects: Project[] = [
     tech: ['Next.js', 'Node.js', 'MongoDB', 'Freshsales API', 'Freshmarketer', 'Twilio', 'SendGrid', 'Webhooks'],
     image: '/images/harmony-garden-cover.svg',
     featured: true,
-    flagship: true,
+    flagship: false,
     order: 1,
   },
   {
@@ -110,11 +110,85 @@ export const projects: Project[] = [
     slug: 'galadima',
     parent: 'harmony-garden',
     title: 'Galadima — Internal Operations Platform',
-    summary: 'Employee management, KPI/appraisal scoring, role-based access, audit logs, and a rule engine routing webhook events from three different platforms into real-time push notifications.',
+    subtitle: "Harmony Garden's day-to-day operations layer — HR, KPIs, appraisals, and a cross-platform escalation engine",
+    summary: 'A role-based operations platform running Harmony Garden day-to-day — KPI scoring, weighted appraisals, Trello-style task boards with automatic time tracking, and one unified alerts feed pulling from Freshservice, Freshsales, and Freshdesk.',
+    description: 'Harmony Garden runs its sales and marketing motion through Freshsales, Freshmarketer, Freshservice, and Freshdesk — but there was no single place to see how the people running the company were actually performing, or one feed for everything those platforms were pushing out. I built Galadima to be that layer: a role-based internal system covering departments, employees, KPIs, appraisals, task boards, escalations, lead routing, broadcasts, reports, and a full audit trail, installable as a PWA with real-time push notifications.',
     category: 'Systems & Integrations',
-    tech: ['Next.js', 'TypeScript', 'MongoDB', 'PWA', 'Web Push', 'JWT Auth', 'Cloudinary', 'Google Sheets API'],
-    image: '/images/harmony-galadima.svg',
+    tech: [
+      'Next.js',
+      'TypeScript',
+      'MongoDB',
+      'JWT Auth',
+      'Webhooks',
+      'Freshsales API',
+      'Freshservice API',
+      'Freshdesk API',
+      'Web Push',
+      'PWA',
+      'node-cron',
+      'Google Sheets API',
+      'Cloudinary',
+    ],
+    image: '/images/galadima/cover.png',
+    gallery: [
+      {
+        src: '/images/galadima/cover.png',
+        caption: 'Dashboard — company score, KPI completion, and live escalations at a glance',
+      },
+      {
+        src: '/images/galadima/kpi-management.png',
+        caption: 'KPI Management — target, weight, formula, and week-over-week trend tracked per employee',
+      },
+      {
+        src: '/images/galadima/appraisal-breakdown.png',
+        caption: 'Appraisals — a weighted formula (KPI performance, attendance, compliance, manager & peer review) computes the final score',
+      },
+      {
+        src: '/images/galadima/escalations.png',
+        caption: 'Escalations — one alert feed unifying everything pushed from Freshservice, Freshsales, and Freshdesk',
+      },
+      {
+        src: '/images/galadima/broadcast.png',
+        caption: 'Broadcast Center — company-wide or department-targeted announcements, pushed instantly',
+      },
+      {
+        src: '/images/galadima/audit-log.png',
+        caption: 'Audit Log — every KPI change, approval, and account action, in order and exportable',
+      },
+      {
+        src: '/images/galadima/admin-overview.png',
+        caption: 'Admin — system overview, users by role, bulk import, and embeddable links',
+      },
+    ],
+    metrics: [
+      { label: 'Modules Shipped', value: '13' },
+      { label: 'Freshworks Platforms Unified', value: '3' },
+      { label: 'Role Tiers', value: '4' },
+    ],
+    sections: [
+      {
+        heading: 'Role-Based Operations Core',
+        body: "Departments, employees, and roles (Super Admin, Department Head, HR Admin, Staff) sit at the center of the system. Every employee record carries roster days, active status, and an optional Freshsales shared-inbox mapping, so people who share a Freshsales seat still get alerted individually.",
+      },
+      {
+        heading: 'KPIs, Submissions & Weighted Appraisals',
+        body: "KPIs carry a target, weight, category, formula, and evidence requirement, with a full submission and review history per employee. Appraisals then roll KPI performance, attendance, compliance, manager review, and peer review into one weighted score and a plain-language rating.",
+      },
+      {
+        heading: 'Unified Escalations & Lead Routing',
+        body: "Freshservice, Freshsales, and Freshdesk each push alerts through their own webhooks. Galadima normalizes all three into a single prioritized feed — critical, unacknowledged, and escalated counts at a glance — and logs every routed lead, including shared-inbox rotations, so nothing gets dropped between systems.",
+      },
+      {
+        heading: 'Task Boards, Time Tracking & Broadcasts',
+        body: "Trello-style boards track work from To Do through Done, with hours accruing automatically while a card sits In Progress — no manual timers. The Broadcast Center pushes company-wide or department-scoped announcements instantly, and scheduled or on-demand reports go out to every Super Admin plus any recipients they add.",
+      },
+      {
+        heading: 'Audit Trail & Installable PWA',
+        body: "Every KPI change, approval, notification, and account action is written to a filterable, exportable audit log. The whole platform installs as a PWA with real push notifications, so critical alerts still reach people when the app itself is closed.",
+      },
+    ],
     featured: false,
+    flagship: true,
     order: 5,
   },
   {

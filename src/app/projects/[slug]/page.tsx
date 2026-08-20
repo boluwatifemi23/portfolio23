@@ -143,6 +143,22 @@ export default async function ProjectPage({ params }: PageProps) {
             </div>
           )}
 
+          {project.gallery && project.gallery.length > 0 && (
+            <div className="flex flex-col gap-8 mb-10">
+              {project.gallery.map((shot) => (
+                <figure key={shot.src}>
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src={shot.src}
+                    alt={shot.caption}
+                    className="w-full h-auto border border-line"
+                  />
+                  <figcaption className="mt-2 text-sm text-muted">{shot.caption}</figcaption>
+                </figure>
+              ))}
+            </div>
+          )}
+
           {children.length > 0 && (
             <div className="mb-10">
               <h2 className="font-display text-xl font-bold mb-4">The Four Systems</h2>
@@ -179,8 +195,8 @@ export default async function ProjectPage({ params }: PageProps) {
                 </a>
               )}
               {project.live && (
-                
-               <a   href={project.live}
+                <a
+                  href={project.live}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 px-5 py-2.5 font-semibold bg-signal text-ink hover:bg-signal/90 transition-colors duration-200"

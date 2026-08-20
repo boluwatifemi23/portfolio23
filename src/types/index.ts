@@ -20,6 +20,11 @@ export interface CaseStudySection {
   body: string
 }
 
+export interface GalleryImage {
+  src: string
+  caption: string
+}
+
 export interface Project {
   slug: string
   title: string
@@ -29,7 +34,7 @@ export interface Project {
   category: 'Systems & Integrations' | 'Full-Stack' | 'Frontend'
   tech: string[]
   image?: string
-  gallery?: string[]
+  gallery?: GalleryImage[]
   github?: string
   live?: string
   featured: boolean
