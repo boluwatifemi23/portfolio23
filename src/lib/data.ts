@@ -130,7 +130,7 @@ export const projects: Project[] = [
       'Cloudinary',
     ],
     image: '/images/galadima/cover.png',
-    gallery: [
+        gallery: [
       {
         src: '/images/galadima/cover.png',
         caption: 'Dashboard — company score, KPI completion, and live escalations at a glance',
@@ -138,6 +138,10 @@ export const projects: Project[] = [
       {
         src: '/images/galadima/kpi-management.png',
         caption: 'KPI Management — target, weight, formula, and week-over-week trend tracked per employee',
+      },
+      {
+        src: '/images/galadima/task-board.png',
+        caption: 'Task Boards — Trello-style columns per project, with due dates, priority, and assignees',
       },
       {
         src: '/images/galadima/appraisal-breakdown.png',
@@ -158,6 +162,10 @@ export const projects: Project[] = [
       {
         src: '/images/galadima/admin-overview.png',
         caption: 'Admin — system overview, users by role, bulk import, and embeddable links',
+      },
+      {
+        src: '/images/galadima/install-pwa.png',
+        caption: 'Installable PWA — push notifications enabled per device, so critical alerts land even when the app is closed',
       },
     ],
     metrics: [
